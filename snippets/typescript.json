@@ -3,16 +3,13 @@
     "prefix": "a-component",
     "description": "Angular component",
     "body": [
-      "import { Component, OnInit } from '@angular/core';",
+      "import { Component } from '@angular/core';",
       "",
       "@Component({",
       "\tselector: '${1:selector-name}',",
       "\ttemplateUrl: '${2:name}.component.html'",
       "})",
-      "export class ${3:Name}Component implements OnInit {",
-      "\tconstructor() { }",
-      "",
-      "\tngOnInit() { }$0",
+      "export class ${3:Name}Component {",
       "}"
     ]
   },
@@ -20,17 +17,14 @@
     "prefix": "a-component-standalone",
     "description": "Angular standalone component",
     "body": [
-      "import { Component, OnInit } from '@angular/core';",
+      "import { Component } from '@angular/core';",
       "",
       "@Component({",
       "\tstandalone:  false,",
       "\tselector: '${1:selector-name}',",
       "\ttemplateUrl: '${2:name}.component.html'",
       "})",
-      "export class ${3:Name}Component implements OnInit {",
-      "\tconstructor() { }",
-      "",
-      "\tngOnInit() { }$0",
+      "export class ${3:Name}Component {",
       "}"
     ]
   },
@@ -44,10 +38,7 @@
       "\tselector: '${1:selector-name}',",
       "\ttemplate: `$0`",
       "})",
-      "export class ${2:Name}Component implements OnInit {",
-      "\tconstructor() { }",
-      "",
-      "\tngOnInit() { }",
+      "export class ${2:Name}Component {",
       "}"
     ]
   },
@@ -75,7 +66,6 @@
       "",
       "@Injectable({providedIn: ${1:'root'}})",
       "export class ${2:ServiceName}Service {",
-      "\tconstructor() { }",
       "\t$0",
       "}"
     ]
@@ -157,8 +147,6 @@
       "",
       "@Injectable()",
       "export class LogInterceptor implements HttpInterceptor {",
-      "\tconstructor() {}",
-      "",
       "\tintercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {",
       "\t\tconst started = Date.now();",
       "\t\treturn next.handle(req).pipe(",
@@ -183,8 +171,6 @@
       "",
       "@Injectable()",
       "export class HeaderInterceptor implements HttpInterceptor {",
-      "\tconstructor() {}",
-      "",
       "\tintercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {",
       "\t\tconst headers = req.headers",
       "\t\t\t.set('Content-Type', 'application/json');",
@@ -289,7 +275,6 @@
       "",
       "@Directive({ selector: '[${1:selector-name}]' })",
       "export class ${2:Name}Directive {",
-      "\tconstructor() { }",
       "}"
     ]
   },
