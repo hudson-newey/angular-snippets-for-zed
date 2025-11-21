@@ -9,7 +9,6 @@
       "\tselector: '${1:selector-name}',",
       "\ttemplateUrl: '${2:name}.component.html'",
       "})",
-      "",
       "export class ${3:Name}Component implements OnInit {",
       "\tconstructor() { }",
       "",
@@ -17,19 +16,17 @@
       "}"
     ]
   },
-  "Angular Standalone Component": {
+  "Angular Module Component": {
     "prefix": "a-component-standalone",
     "description": "Angular standalone component",
     "body": [
       "import { Component, OnInit } from '@angular/core';",
       "",
       "@Component({",
-      "\tstandalone: true,",
-      "\timports: [],",
+      "\tstandalone:  false,",
       "\tselector: '${1:selector-name}',",
       "\ttemplateUrl: '${2:name}.component.html'",
       "})",
-      "",
       "export class ${3:Name}Component implements OnInit {",
       "\tconstructor() { }",
       "",
@@ -47,7 +44,6 @@
       "\tselector: '${1:selector-name}',",
       "\ttemplate: `$0`",
       "})",
-      "",
       "export class ${2:Name}Component implements OnInit {",
       "\tconstructor() { }",
       "",
@@ -64,7 +60,6 @@
       "@Pipe({",
       "\tname: '${1:selector-name}'",
       "})",
-      "",
       "export class ${2:Name}Pipe implements PipeTransform {",
       "\ttransform(value: any, ...args: any[]): any {",
       "\t\t$0",
