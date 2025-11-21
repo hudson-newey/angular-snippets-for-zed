@@ -1,8 +1,9 @@
 id = "zed-angular-snippets"
 name = "Zed Angular Snippets"
-version = "0.1.3"
+version = "0.1.4"
 schema_version = 1
 authors = ["hudson-newey", "johnpapa"]
 description = "Angular snippets for Zed (fork of johnpapa/vscode-angular-snippets)"
 repository = "https://github.com/hudson-newey/zed-angular-snippets"
-snippets = ["./snippets/angular.json", "./snippets/typescript.json"]
+# snippets = ["./snippets/angular.json", "./snippets/typescript.json"] # this doesn't work, although I'd like it to...
+snippets = "./snippets/typescript.json"
