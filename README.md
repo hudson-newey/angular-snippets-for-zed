@@ -4,7 +4,7 @@ Big thank you for johnpapa for his development and maintenance of the [vscode-an
 
 **Updated for Angular 18 release**
 
-This extension for Visual Studio Code adds snippets for Angular for TypeScript and HTML.
+This extension for Zed adds snippets for Angular TypeScript.
 
 ![Use Extension](images/use-extension.gif)
 
@@ -66,6 +66,12 @@ See the [CHANGELOG](CHANGELOG.md) for the latest changes
 | `a-ngrx-data-entity-metadata`                | create the entity metadata for NgRx                       |
 | `a-ngrx-data-entity-collection-data-service` | create a data service using NgRx                          |
 
+<!--
+At the time of writing, Zed only supports 1 snippet path per extension :(
+
+Therefore, I've decided to omit the HTML snippets for now, because I
+(personally) use the TypeScript and NgRx snippets a lot more often.
+
 ### Angular Snippets
 
 | Snippet              | Purpose                                             |
@@ -94,6 +100,7 @@ See the [CHANGELOG](CHANGELOG.md) for the latest changes
 | `a-preja`            | show the JSON form of a model, using async          |
 | `a-ng-container`     | `<ng-container>` element                            |
 | `a-ng-content`       | `<ng-content>` element                              |
+-->
 
 ## Installation
 
