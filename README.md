@@ -6,9 +6,7 @@ Big thank you for johnpapa for his development and maintenance of the [vscode-an
 
 This extension for Zed adds snippets for Angular TypeScript.
 
-![Use Extension](images/use-extension.gif)
-
-See the [CHANGELOG](CHANGELOG.md) for the latest changes
+![Demo using the a-service-httpclient snippet](images/use-extension.gif)
 
 ### TypeScript Angular Snippets
 
