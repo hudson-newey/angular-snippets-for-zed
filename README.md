@@ -2,7 +2,7 @@
 
 Big thank you for johnpapa for his development and maintenance of the [vscode-angular-snippets](https://github.com/johnpapa/vscode-angular-snippets) which this extension is based on.
 
-**Updated for Angular 18 release**
+**Updated for Angular 19 release**
 
 This extension for Zed adds snippets for Angular TypeScript.
 
@@ -15,7 +15,6 @@ See the [CHANGELOG](CHANGELOG.md) for the latest changes
 | Snippet                      | Purpose                                                              |
 | ---------------------------- | -------------------------------------------------------------------- |
 | `a-component`                | component                                                            |
-| `a-component-standalone`     | standalone component                                                 |
 | `a-component-inline`         | component with inline template                                       |
 | `a-component-root`           | root app component                                                   |
 | `a-ctor-skip-self`           | angular `NgModule`'s `skipself` constructor                          |
@@ -80,9 +79,8 @@ Therefore, I've decided to omit the HTML snippets for now, because I
 | `a-select`           | `<select>` control                                  |
 | `a-style`            | `[style]` binding                                   |
 | `a-ngClass`          | `ngClass`                                           |
-| `a-ngFor`            | `*ngFor`                                            |
-| `a-ngForAsync`       | `*ngFor` with async                                 |
-| `a-ngFor-trackBy`    | `*ngFor` with trackBy                               |
+| `a-for`            | `*ngFor`                                            |
+| `a-forAsync`       | `*ngFor` with async                                 |
 | `a-form`             | create a form tag with ngSubmit and form attributes |
 | `a-formArrayName`    | `formArrayName`                                     |
 | `a-formControlName`  | `formControlName`                                   |

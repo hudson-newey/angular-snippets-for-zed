@@ -4,34 +4,45 @@
     "body": ["[class]=\"${1:expression}\""],
     "description": "Angular [class] binding"
   },
-  "style": {
-    "prefix": "a-style",
-    "body": ["[style.${1:property}]=\"${2:expression}\""],
-    "description": "Angular [style] binding"
-  },
   "ngClass": {
     "prefix": "a-ngClass",
     "body": ["[ngClass]=\"{${1:cssClass}: ${2:expression}}\""],
     "description": "Angular ngClass"
   },
-  "ngFor": {
+  "style": {
+    "prefix": "a-style",
+    "body": ["[style.${1:property}]=\"${2:expression}\""],
+    "description": "Angular [style] binding"
+  },
+  "ngStyle": {
+    "prefix": "a-ngStyle",
+    "body": ["[ngStyle]=\"{${1:style}: ${2:expression}}\""],
+    "description": "Angular ngStyle"
+  },
+  "for": {
     "prefix": "a-ngFor",
-    "body": ["*ngFor=\"let ${1:item} of ${2:list}\"${0}"],
-    "description": "Angular *ngFor"
+    "body": [
+      "@for (${1:item} of ${2:list}; track ${$3:track}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Angular @for loop"
   },
-  "ngFor with trackBy": {
-    "prefix": "a-ngFor-trackBy",
-    "body": ["*ngFor=\"let ${1:item} of ${2:list}; trackBy:${1:trackByFnName}\"${0}"],
-    "description": "Angular *ngFor with trackBy"
-  },
-  "ngForAsync": {
+  "forAsync": {
     "prefix": "a-ngForAsync",
-    "body": ["*ngFor=\"let ${1:item} of ${2:stream} | async as ${3:list}\"${0}"],
-    "description": "Angular *ngForAsync"
+    "body": [
+      "@for (${1:item} of (${2:stream} | async); track ${$3:track};) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Angular @for loop with async / RxJS source"
   },
   "ngForm": {
     "prefix": "a-form",
-    "body": ["<form (ngSubmit)=\"onSubmit()\" #${1:form}=\"ngForm\">", "</form>"],
+    "body": [
+      "<form (ngSubmit)=\"onSubmit()\" #${1:form}=\"ngForm\">",
+      "</form>"
+    ],
     "description": "Form with ngSubmit and form attributes"
   },
   "ngFormArrayName": {
@@ -56,18 +67,46 @@
   },
   "ngFormSubmit": {
     "prefix": "a-form-submit",
-    "body": ["<button type=\"submit\" [disabled]=\"!${1:form}.form.valid\">", "\tSave", "</button>"],
+    "body": [
+      "<button type=\"submit\" [disabled]=\"!${1:form}.form.valid\">",
+      "\tSave",
+      "</button>"
+    ],
     "description": "Angular form submit"
   },
   "ngIf": {
-    "prefix": "a-ngIf",
-    "body": ["*ngIf=\"${1:expression}\""],
-    "description": "Angular *ngIf"
+    "prefix": "a-if",
+    "body": [
+      "@if (${1:expression}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Angular @if"
   },
   "ngIfElse": {
-    "prefix": "a-ngIfElse",
-    "body": ["*ngIf=\"${1:expression};else ${2:templateName}\""],
-    "description": "Angular *ngIfElse"
+    "prefix": "a-ifElse",
+    "body": [
+      "@if (${1:expression}) {",
+      "\t${2:trueTemplate}",
+      "} @else {",
+      "\t${3:falseTemplate}",
+      "}"
+    ],
+    "description": "Angular @if ... @else"
+  },
+  "ngSwitch": {
+    "prefix": "a-switch",
+    "body": [
+      "@switch (${1:conditionExpression}) {",
+      "\t@case (${2:expression}) {",
+      "\t\t${3:output}",
+      "\t}",
+      "\t@default {",
+      "\t\t${4:output2}",
+      "\t}",
+      "}"
+    ],
+    "description": "Angular @switch"
   },
   "ngModel": {
     "prefix": "a-ngModel",
@@ -91,34 +130,21 @@
     "prefix": "a-select",
     "body": [
       "<select [(ngModel)]=\"${1:model}\">",
-      "\t<option *ngFor=\"let ${2:item} of ${3:list}\" [value]=\"${2:item}\">{{${2:item}}}</option>",
+      "\t@for (${2:item} of ${3:list}; track ${4:track}) {",
+      "\t\t<option [value]=\"${2:item}\">{{ ${2:item} }}</option>",
+      "\t}",
       "</select>"
     ],
     "description": "<select> control with ngModel"
   },
-  "ngStyle": {
-    "prefix": "a-ngStyle",
-    "body": ["[ngStyle]=\"{${1:style}: ${2:expression}}\""],
-    "description": "Angular ngStyle"
-  },
-  "ngSwitch": {
-    "prefix": "a-ngSwitch",
-    "body": [
-      "<div [ngSwitch]=\"${1:conditionExpression}\">",
-      "\t<div *ngSwitchCase=\"${2:expression}\">${3:output}</div>",
-      "\t<div *ngSwitchDefault>${4:output2}</div>",
-      "</div>"
-    ],
-    "description": "Angular ngSwitch"
-  },
   "pre w/ json": {
     "prefix": "a-prej",
-    "body": ["<pre>{{${1:model} | json}}</pre>$0"],
+    "body": ["<pre>{{ ${1:model} | json }}</pre>$0"],
     "description": "Angular pre debug | json"
   },
   "pre w/ async json": {
     "prefix": "a-preja",
-    "body": ["<pre>{{${1:model} | async | json}}</pre>$0"],
+    "body": ["<pre>{{ ${1:model} | async | json }}</pre>$0"],
     "description": "Angular pre debug | async | json"
   },
   "ng-container": {

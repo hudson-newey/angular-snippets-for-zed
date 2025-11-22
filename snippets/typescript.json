@@ -13,21 +13,6 @@
       "}"
     ]
   },
-  "Angular Module Component": {
-    "prefix": "a-component-standalone",
-    "description": "Angular standalone component",
-    "body": [
-      "import { Component } from '@angular/core';",
-      "",
-      "@Component({",
-      "\tstandalone:  false,",
-      "\tselector: '${1:selector-name}',",
-      "\ttemplateUrl: '${2:name}.component.html'",
-      "})",
-      "export class ${3:Name}Component {",
-      "}"
-    ]
-  },
   "Angular Component with Inline Template": {
     "prefix": "a-component-inline",
     "description": "Angular component with an inline template",
@@ -60,7 +45,7 @@
   },
   "Angular Service": {
     "prefix": "a-service",
-    "description": "Angular Service with Injectable ProvidedIn Root",
+    "description": "Angular Service with Injectable providedIn Root",
     "body": [
       "import { Injectable } from '@angular/core';",
       "",
@@ -141,23 +126,20 @@
     "prefix": "a-http-interceptor-logging",
     "description": "Angular HttpInterceptor for Logging HttpClient",
     "body": [
-      "import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse } from '@angular/common/http';",
+      "import { HttpHandlerFn, HttpRequest, HttpEvent, HttpResponse } from '@angular/common/http';",
       "import { Observable } from 'rxjs';",
       "import { tap } from 'rxjs/operators';",
       "",
-      "@Injectable()",
-      "export class LogInterceptor implements HttpInterceptor {",
-      "\tintercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {",
-      "\t\tconst started = Date.now();",
-      "\t\treturn next.handle(req).pipe(",
-      "\t\t\ttap(event => {",
-      "\t\t\t\tif (event instanceof HttpResponse) {",
-      "\t\t\t\t\tconst elapsed = Date.now() - started;",
-      "\t\t\t\t\tconsole.log(`Request for \\${req.urlWithParams} took \\${elapsed} ms.`);",
-      "\t\t\t\t}",
-      "\t\t\t})",
-      "\t\t);",
-      "\t}",
+      "export function logInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {",
+      "\tconst started = Date.now();",
+     	"\treturn next(req).pipe(",
+  		"\t\ttap((event) => {",
+			"\t\t\tif (event instanceof HttpResponse) {",
+			"\t\t\t\tconst elapsed = Date.now() - started;",
+			"\t\t\t\tconsole.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);",
+			"\t\t\t}",
+			"\t\t})",
+     	"\t);",
       "}"
     ]
   },
@@ -165,41 +147,42 @@
     "prefix": "a-http-interceptor-headers",
     "description": "Angular HttpInterceptor for headers HttpClient",
     "body": [
-      "import { Injectable } from '@angular/core';",
-      "import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';",
+      "import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';",
       "import { Observable } from 'rxjs';",
       "",
-      "@Injectable()",
-      "export class HeaderInterceptor implements HttpInterceptor {",
-      "\tintercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {",
-      "\t\tconst headers = req.headers",
-      "\t\t\t.set('Content-Type', 'application/json');",
-      "\t\tconst authReq = req.clone({ headers });",
-      "\t\treturn next.handle(authReq);",
-      "\t}",
+      "export function headerInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {",
+     	"\tconst headers = req.headers.set('Content-Type', 'application/json');",
+     	"\tconst authReq = req.clone({ headers });",
+     	"\treturn next.handle(authReq);",
       "}"
     ]
   },
-  "Angular HttpInterceptor - Empty": {
+  "Angular HttpInterceptor": {
     "prefix": "a-http-interceptor",
     "description": "Empty Angular HttpInterceptor for HttpClient",
     "body": [
-      "import { Injectable } from '@angular/core';",
-      "import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';",
+      "import { HttpEvent, HttpRequest, HttpHandlerFn } from '@angular/common/http';",
       "import { Observable } from 'rxjs';",
       "",
-      "@Injectable()",
-      "export class ${2:Your}Interceptor implements HttpInterceptor {",
-      "\tintercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {",
-      "\t\treturn next.handle(req);",
-      "\t}",
+      "export function yourInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {",
+      "\treturn next.handle(req);",
       "}"
     ]
   },
-  "Output Event": {
+  "Output Event Signal": {
     "prefix": "a-output-event",
-    "body": ["@Output() ${1:eventName} = new EventEmitter<${2:eventType}>();"],
-    "description": "Angular @Output event and emitter"
+    "body": ["public readonly ${1:eventName} = output<${2:eventType}>();"],
+    "description": "Angular output event signal"
+  },
+  "Input Event Signal": {
+    "prefix": "a-input",
+    "body": ["public readonly ${1:eventName} = input<${2:eventType}>();"],
+    "description": "Angular input signal"
+  },
+  "Input Event Signal (required)": {
+    "prefix": "a-input-required",
+    "body": ["public readonly ${1:eventName} = input.required<${2:eventType}>();"],
+    "description": "Angular required input signal"
   },
   "Subscribe": {
     "prefix": "a-subscribe",
@@ -247,7 +230,11 @@
   "Route definitions": {
     "prefix": "a-routes",
     "description": "Route definitions",
-    "body": ["import { Routes } from '@angular/router';", "", "export const routes: Routes = [${0}]"]
+    "body": [
+      "import { Routes } from '@angular/router';",
+      "",
+      "export const routes: Routes = [${0}]"
+    ]
   },
   "Angular Module": {
     "prefix": "a-module",
@@ -458,6 +445,18 @@
     "prefix": "a-resolver",
     "description": "Angular Resolver",
     "body": [
+      "import { ActivatedRouteSnapshot, RouterStateSnapshot, ResolveFn } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "export const yourResolver: ResolveFn<any> = (router: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ObjectToResolve> | Promise<ObjectToResolve> => {",
+      "\treturn ${0};",
+      "}"
+    ]
+  },
+  "Angular Resolver (injectable)": {
+    "prefix": "a-resolver-injectable",
+    "description": "Angular Resolver",
+    "body": [
       "import { Injectable } from '@angular/core';",
       "import { Resolve, ActivatedRouteSnapshot } from '@angular/router';",
       "import { Observable } from 'rxjs';",
@@ -481,11 +480,11 @@
       "import { environment } from '../../environments/environment';",
       "",
       "@NgModule({",
-      "  imports: [",
-      "    StoreModule.forRoot({}),",
-      "    EffectsModule.forRoot([]),",
-      "    environment.production ? [] : StoreDevtoolsModule.instrument()",
-      "  ]",
+      "\timports: [",
+      "\t\tStoreModule.forRoot({}),",
+      "\t\tEffectsModule.forRoot([]),",
+      "\t\tenvironment.production ? [] : StoreDevtoolsModule.instrument()",
+      "\t]",
       "})",
       "export class $1StoreModule {}"
     ]
@@ -574,11 +573,11 @@
       "import { EntityMetadataMap } from '@ngrx/data';",
       "",
       "const entityMetadata: EntityMetadataMap = {",
-      "  ${1:Model1}: {},${0}",
+      "\t${1:Model1}: {},${0}",
       "};",
       "",
       "export const entityConfig = {",
-      "  entityMetadata",
+      "\tentityMetadata",
       "};"
     ]
   },
@@ -595,15 +594,19 @@
       "",
       "@Injectable({ providedIn: ${3:'root'} })",
       "export class ${1:Model}Service extends EntityCollectionServiceBase<${1:Model}> {",
-      "  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {",
-      "    super('${1:Model}', serviceElementsFactory);",
-      "  }",
+      "\tconstructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {",
+      "\t\tsuper('${1:Model}', serviceElementsFactory);",
+      "\t}",
       "}"
     ]
   },
   "TrackBy Function": {
     "prefix": "a-trackby",
     "description": "TrackBy Function",
-    "body": ["${1:trackBy}(index: number, ${2:name}: ${3:model}): ${4:number} {", "  return ${2:name}${5:.id};$0", "}"]
+    "body": [
+      "${1:trackBy}(index: number, ${2:name}: ${3:model}): ${4:number} {",
+      "\treturn ${2:name}${5:.id};$0",
+      "}"
+    ]
   }
 }

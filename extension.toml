@@ -1,6 +1,6 @@
 id = "zed-angular-snippets"
 name = "Zed Angular Snippets"
-version = "18.0.0"
+version = "19.0.0"
 schema_version = 1
 authors = ["hudson-newey", "johnpapa"]
 description = "Angular snippets for Zed (fork of johnpapa/vscode-angular-snippets)"
