@@ -27,6 +27,22 @@
       "}"
     ]
   },
+  "Angular Root Component": {
+    "prefix": "a-component-root",
+    "description": "Angular App root component",
+    "body": [
+      "import { Component } from '@angular/core';",
+      "import { RouterOutlet } from '@angular/router';",
+      "",
+      "@Component({",
+      "\tselector: '${1:prefix-app}',",
+      "\ttemplate: `<router-outlet></router-outlet>`,",
+      "\timports: [RouterOutket],",
+      "})",
+      "export class ${2:App}Component { }",
+      "$0"
+    ]
+  },
   "Angular Pipe": {
     "prefix": "a-pipe",
     "description": "Angular pipe",
@@ -51,6 +67,20 @@
       "",
       "@Injectable({ providedIn: ${1:'root'} })",
       "export class ${2:ServiceName}Service {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular HttpClient Service": {
+    "prefix": "a-service-httpclient",
+    "description": "Angular service with HttpClient",
+    "body": [
+      "import { Injectable, inject } from '@angular/core';",
+      "import { HttpClient } from '@angular/common/http';",
+      "",
+      "@Injectable({ providedIn: ${1:'root'} })",
+      "export class ${2:ServiceName}Service {",
+      "\tprivate readonly httpClient = inject(HttpClient);",
       "\t$0",
       "}"
     ]
@@ -108,20 +138,6 @@
     "description": "Angular HttpClient.get",
     "body": ["return this.httpClient.get('${1:url}');$0"]
   },
-  "Angular HttpClient Service": {
-    "prefix": "a-service-httpclient",
-    "description": "Angular service with HttpClient",
-    "body": [
-      "import { Injectable, inject } from '@angular/core';",
-      "import { HttpClient } from '@angular/common/http';",
-      "",
-      "@Injectable({ providedIn: ${1:'root'} })",
-      "export class ${2:ServiceName}Service {",
-      "\tprivate readonly httpClient = inject(HttpClient);",
-      "\t$0",
-      "}"
-    ]
-  },
   "Angular HttpInterceptor for Logging": {
     "prefix": "a-http-interceptor-logging",
     "description": "Angular HttpInterceptor for Logging HttpClient",
@@ -169,12 +185,12 @@
       "}"
     ]
   },
-  "Output Event Signal": {
-    "prefix": "a-output-event",
+  "Output Signal": {
+    "prefix": "a-output",
     "body": ["public readonly ${1:eventName} = output<${2:eventType}>();"],
     "description": "Angular output event signal"
   },
-  "Input Event Signal": {
+  "Input Signal": {
     "prefix": "a-input",
     "body": ["public readonly ${1:eventName} = input<${2:eventType}>();"],
     "description": "Angular input signal"
@@ -188,22 +204,6 @@
     "prefix": "a-subscribe",
     "description": "Angular observable subscribe",
     "body": ["this.${1:service}.${2:function}", "\t.subscribe(${3:arg} => this.${4:property} = ${3:arg});", "$0"]
-  },
-  "Angular Root Component": {
-    "prefix": "a-component-root",
-    "description": "Angular App root component",
-    "body": [
-      "import { Component } from '@angular/core';",
-      "import { RouterOutlet } from '@angular/router';",
-      "",
-      "@Component({",
-      "\tselector: '${1:prefix-app}',",
-      "\ttemplate: `<router-outlet></router-outlet>`,",
-      "\timports: [RouterOutket],",
-      "})",
-      "export class ${2:App}Component { }",
-      "$0"
-    ]
   },
   "Angular Root Module": {
     "prefix": "a-module-root",
@@ -336,10 +336,10 @@
       "\tcomponent: CanComponentDeactivate",
       ") => {",
       "\t\tif (component.canDeactivate()) {",
-      "\t\t\tconsole.log(`💂‍♀️ [Guard] - Can Deactivate Guard - allowed`);",
+      "\t\t\tconsole.log(`[Guard] - Can Deactivate Guard - allowed`);",
       "\t\t\treturn true;",
       "\t\t} else {",
-      "\t\t\tconsole.log(`💂‍♀️ [Guard] - Can Deactivate Guard - not allowed`);",
+      "\t\t\tconsole.log(`[Guard] - Can Deactivate Guard - not allowed`);",
       "\t\t\treturn false;",
       "\t}",
       "}"
@@ -425,16 +425,6 @@
       "}"
     ]
   },
-  "RxJs Import": {
-    "prefix": "a-rxjs-import",
-    "description": "RxJs import",
-    "body": ["import { ${1:Observable} } from 'rxjs';", "$0"]
-  },
-  "RxJs Operator Import": {
-    "prefix": "a-rxjs-operator-import",
-    "description": "RxJs import",
-    "body": ["import { ${1:map} } from 'rxjs/operators';", "$0"]
-  },
   "Angular Resolver": {
     "prefix": "a-resolver",
     "description": "Angular Resolver",
@@ -463,137 +453,6 @@
       "}"
     ]
   },
-  "NgRx Store Module": {
-    "prefix": "a-ngrx-store-module",
-    "description": "NgRx Store Module",
-    "body": [
-      "import { NgModule } from '@angular/core';",
-      "import { EffectsModule } from '@ngrx/effects';",
-      "import { StoreModule } from '@ngrx/store';",
-      "import { StoreDevtoolsModule } from '@ngrx/store-devtools';",
-      "import { environment } from '../../environments/environment';",
-      "",
-      "@NgModule({",
-      "\timports: [",
-      "\t\tStoreModule.forRoot({}),",
-      "\t\tEffectsModule.forRoot([]),",
-      "\t\tenvironment.production ? [] : StoreDevtoolsModule.instrument()",
-      "\t]",
-      "})",
-      "export class $1StoreModule {}"
-    ]
-  },
-  "NgRx Create Action": {
-    "prefix": "a-ngrx-create-action",
-    "description": "Creates an NgRx Action",
-    "body": ["export const ${1:action} = createAction('[${2:Source}] ${3:Event}');"]
-  },
-  "NgRx Create Action w/ Props": {
-    "prefix": "a-ngrx-create-action-props",
-    "description": "Creates an NgRx Action with Props",
-    "body": ["export const ${1:action} = createAction('[${2:Source}] ${3:Event}', props<{${4:key}: ${5:type}}>());"]
-  },
-  "NgRx Create Reducer": {
-    "prefix": "a-ngrx-create-reducer",
-    "description": "Creates an NgRx Reducer",
-    "body": [
-      "const ${1:feature}Reducer = createReducer(",
-      "\tinitialState,",
-      "\ton($1Actions.action, state => ({ ...state, ${2:prop}: ${3:updatedValue} })),",
-      ");",
-      "",
-      "export function reducer(state: State | undefined, action: Action) {",
-      "\treturn $1Reducer(state, action);",
-      "}"
-    ]
-  },
-  "NgRx Create Effect": {
-    "prefix": "a-ngrx-create-effect",
-    "description": "Creates an NgRx Effect",
-    "body": [
-      "${1:effectName}$ = createEffect(() => {",
-      "\treturn this.actions$.pipe(",
-      "\t\t\tofType(${2:action}),",
-      "\t\t\t/** An EMPTY observable only emits completion. Replace with your own observable stream */",
-      "\t\t\t${3:operator}(() => ${4:EMPTY}));",
-      "});"
-    ]
-  },
-  "NgRx Create Effect for API Call": {
-    "prefix": "a-ngrx-create-effect-api",
-    "description": "Creates an NgRx Effect Scaffolded for API Call",
-    "body": [
-      "${1:effectName}$ = createEffect(() => {",
-      "\treturn this.actions$.pipe(",
-      "\t\t\tofType(${2:Feature}Actions.${3:action}),",
-      "\t\t\t${4:operator}(() =>",
-      "\t\t\t\t${5:apiSource}.pipe(",
-      "\t\t\t\t\tmap(data => $2Actions.$3Success({ data })),",
-      "\t\t\t\t\tcatchError(error => of($2Actions.$3Failure({ error }))))",
-      "\t\t\t\t),",
-      "\t);",
-      "});"
-    ]
-  },
-  "NgRx Create Selector": {
-    "prefix": "a-ngrx-create-selector",
-    "description": "Creates an NgRx Selector",
-    "body": [
-      "export const select${1:Feature}${2:Property} = createSelector(",
-      "\tselect$1,",
-      "\t(state: $1State) => state.${3:property}",
-      ");"
-    ]
-  },
-  "NgRx Create Selector w/ Props": {
-    "prefix": "a-ngrx-create-selector-props",
-    "description": "Creates an NgRx Selector using props",
-    "body": [
-      "export const select${1:Feature}${2:Property} = createSelector(",
-      "\tselect$1,",
-      "\t(state: $1State, props) => ${3:selectLogic}",
-      ");"
-    ]
-  },
-  "NgRx Data Import Entity Data Module": {
-    "prefix": "a-ngrx-data-entity-data-module-import",
-    "description": "Import NgRx Entity Data Module",
-    "body": ["EntityDataModule.forRoot(${1:entityConfig}),"]
-  },
-  "NgRx Data Entity Metadata": {
-    "prefix": "a-ngrx-data-entity-metadata",
-    "description": "NgRx Data Entity Metadata",
-    "body": [
-      "import { EntityMetadataMap } from '@ngrx/data';",
-      "",
-      "const entityMetadata: EntityMetadataMap = {",
-      "\t${1:Model1}: {},${0}",
-      "};",
-      "",
-      "export const entityConfig = {",
-      "\tentityMetadata",
-      "};"
-    ]
-  },
-  "NgRx Data Entity Collection Data Service": {
-    "prefix": "a-ngrx-data-entity-collection-data-service",
-    "description": "NgRx Data Entity Collection Data Service",
-    "body": [
-      "import { Injectable } from '@angular/core';",
-      "import {",
-      "  EntityCollectionServiceBase,",
-      "  EntityCollectionServiceElementsFactory",
-      "} from '@ngrx/data';",
-      "import { ${1:Model} } from '${2:../core}';",
-      "",
-      "@Injectable({ providedIn: ${3:'root'} })",
-      "export class ${1:Model}Service extends EntityCollectionServiceBase<${1:Model}> {",
-      "\tconstructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {",
-      "\t\tsuper('${1:Model}', serviceElementsFactory);",
-      "\t}",
-      "}"
-    ]
-  },
   "TrackBy Function": {
     "prefix": "a-trackby",
     "description": "TrackBy Function",
@@ -602,5 +461,15 @@
       "\treturn ${2:name}${5:.id};$0",
       "}"
     ]
+  },
+  "RxJs Import": {
+    "prefix": "a-rxjs-import",
+    "description": "RxJs import",
+    "body": ["import { ${1:Observable} } from 'rxjs';", "$0"]
+  },
+  "RxJs Operator Import": {
+    "prefix": "a-rxjs-operator-import",
+    "description": "RxJs import",
+    "body": ["import { ${1:map} } from 'rxjs/operators';", "$0"]
   }
 }

@@ -8,17 +8,20 @@ This extension for Zed adds TypeScript snippets for Angular.
 
 ![Demo using the a-service-httpclient snippet](images/use-extension.gif)
 
-### TypeScript Angular Snippets
+### Angular TypeScript Snippets
 
 | Snippet                      | Purpose                                                              |
 | ---------------------------- | -------------------------------------------------------------------- |
 | `a-component`                | component                                                            |
 | `a-component-inline`         | component with inline template                                       |
-| `a-component-root`           | root app component                                                   |
+| `a-component-root`           | root app component with router-outlet                                |
+| `a-pipe`                     | pipe                                                                 |
+| `a-service`                  | service with injectable provided in root                             |
+| `a-service-httpclient`       | service with injected `HttpClient`                                   |
 | `a-ctor-skip-self`           | angular `NgModule`'s `skipself` constructor                          |
 | `a-directive`                | directive                                                            |
 | `a-guard-can-activate`       | `CanActivateFn` guard                                                |
-| `a-guard-can-activate-child` | `CanActivateChildFn` guard                                             |
+| `a-guard-can-activate-child` | `CanActivateChildFn` guard                                           |
 | `a-guard-can-deactivate`     | `CanDeactivate` guard                                                |
 | `a-guard-can-match`          | `CanMatch` guard                                                     |
 | `a-httpclient-get`           | `httpClient.get` with Rx Observable                                  |
@@ -27,14 +30,11 @@ This extension for Zed adds TypeScript snippets for Angular.
 | `a-http-interceptor-logging` | Angular `HttpInterceptor` that logs traffic for `HttpClient`         |
 | `a-module`                   | module                                                               |
 | `a-module-root`              | root app module                                                      |
-| `a-output-event`             | `@Output` event and emitter                                          |
-| `a-pipe`                     | pipe                                                                 |
 | `a-preload-opt-in-strategy`  | custom preload strategy that allows choosing which routes to preload |
 | `a-preload-network-strategy` | custom preload strategy that preloads based on network connectivity  |
-| `a-resolver`                 | resolver                                                             |
+| `a-resolver`                 | functional route resolver                                            |
+| `a-resolver-injectable`      | injectable route resolver                                            |
 | `a-routes`                   | Route definition file                                                |
-| `a-rxjs-import`              | import RxJs features                                                 |
-| `a-rxjs-operators`           | import RxJs operators                                                |
 | `a-route-path-404`           | 404 route path                                                       |
 | `a-route-path-default`       | default route path                                                   |
 | `a-route-path-with-children` | route path with children                                             |
@@ -42,26 +42,12 @@ This extension for Zed adds TypeScript snippets for Angular.
 | `a-route-path-lazy`          | lazy route path                                                      |
 | `a-router-events`            | listen to one or more router events                                  |
 | `a-route-params-subscribe`   | subscribe to route parameters                                        |
-| `a-service`                  | service with injectable provided in root                             |
-| `a-service-httpclient`       | service with `HttpClient`                                            |
 | `a-subscribe`                | Rx Observable subscription                                           |
-| `a-trackby`                  | to create a trackby function in TypeScript for the `ngFor`           |
-
-### NgRx Snippets
-
-| Snippet                                      | Purpose                                                   |
-| -------------------------------------------- | --------------------------------------------------------- |
-| `a-ngrx-store-module`                        | create an NgRx store module                               |
-| `a-ngrx-create-action`                       | create an NgRx action with `createAction`                 |
-| `a-ngrx-create-action-props`                 | create an NgRx action with `createAction` with props      |
-| `a-ngrx-create-reducer`                      | create an NgRx reducer with `createReducer`               |
-| `a-ngrx-create-effect`                       | create an NgRx effect with `createEffect`                 |
-| `a-ngrx-create-effect-api`                   | create an NgRx effect with `createEffect` for an API call |
-| `a-ngrx-create-selector`                     | create an NgRx selector with `createSelector`             |
-| `a-ngrx-create-selector-props`               | create an NgRx selector with `createSelector` with props  |
-| `a-ngrx-data-entity-data-module-import`      | add `EntityDataModule`                                    |
-| `a-ngrx-data-entity-metadata`                | create the entity metadata for NgRx                       |
-| `a-ngrx-data-entity-collection-data-service` | create a data service using NgRx                          |
+| `a-trackby`                  | to create a track function in TypeScript for the `@for`              |
+| `a-rxjs-import`              | import RxJs features                                                 |
+| `a-rxjs-operators`           | import RxJs operators                                                |
+| `a-output`                   | `output` signal                                                      |
+| `a-input`                    | `input` signal                                                       |
 
 <!--
 At the time of writing, Zed only supports 1 snippet path per extension :(
