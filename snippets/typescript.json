@@ -152,7 +152,7 @@
   		"\t\ttap((event) => {",
 			"\t\t\tif (event instanceof HttpResponse) {",
 			"\t\t\t\tconst elapsed = Date.now() - started;",
-			"\t\t\t\tconsole.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);",
+			"\t\t\t\tconsole.log(`Request for \\${req.urlWithParams} took \\${elapsed} ms.`);",
 			"\t\t\t}",
 			"\t\t})",
      	"\t);",
