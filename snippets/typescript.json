@@ -192,13 +192,33 @@
   },
   "Input Signal": {
     "prefix": "a-input",
-    "body": ["public readonly ${1:eventName} = input<${2:eventType}>();"],
+    "body": ["public readonly ${1:inputName} = input<${2:inputType}>();"],
     "description": "Angular input signal"
   },
   "Input Event Signal (required)": {
     "prefix": "a-input-required",
     "body": ["public readonly ${1:eventName} = input.required<${2:eventType}>();"],
     "description": "Angular required input signal"
+  },
+  "Signal": {
+    "prefix": "a-signal",
+    "body": ["public readonly ${1:signalName} = signal();"],
+    "description": "Angular signal"
+  },
+  "Computed Signal": {
+    "prefix": "a-computed",
+    "body": ["public readonly ${1:signalName} = computed(() => ${2:expression});"],
+    "description": "Angular computed signal"
+  },
+  "Linked Signal": {
+    "prefix": "a-linked-signal",
+    "body": ["public readonly ${1:signalName} = linkedSignal();"],
+    "description": "Angular linked signal"
+  },
+  "Inject Dependency": {
+    "prefix": "a-inject",
+    "body": ["public readonly ${1:dependency} = inject(${2:service});"],
+    "description": "Angular inject() function"
   },
   "Subscribe": {
     "prefix": "a-subscribe",
