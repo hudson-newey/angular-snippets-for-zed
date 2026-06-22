@@ -187,17 +187,17 @@
   },
   "Output Signal": {
     "prefix": "a-output",
-    "body": ["public readonly ${1:eventName} = output<${2:eventType}>();"],
+    "body": ["readonly ${1:eventName} = output<${2:eventType}>();"],
     "description": "Angular output event signal"
   },
   "Input Signal": {
     "prefix": "a-input",
-    "body": ["public readonly ${1:inputName} = input<${2:inputType}>();"],
+    "body": ["readonly ${1:inputName} = input<${2:inputType}>();"],
     "description": "Angular input signal"
   },
   "Input Event Signal (required)": {
     "prefix": "a-input-required",
-    "body": ["public readonly ${1:eventName} = input.required<${2:eventType}>();"],
+    "body": ["readonly ${1:eventName} = input.required<${2:eventType}>();"],
     "description": "Angular required input signal"
   },
   "Signal": {
