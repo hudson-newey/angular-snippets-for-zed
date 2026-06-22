@@ -48,6 +48,10 @@ This extension for Zed adds TypeScript snippets for Angular.
 | `a-rxjs-operators`           | import RxJs operators                                                |
 | `a-output`                   | `output` signal                                                      |
 | `a-input`                    | `input` signal                                                       |
+| `a-signal`                   | Angular signal                                                       |
+| `a-computed`                 | Computed signal                                                      |
+| `a-linked-signal`            | Linked signal                                                        |
+| `a-inject`                   | `inject()` function                                                  |
 
 <!--
 At the time of writing, Zed only supports 1 snippet path per extension :(
@@ -84,7 +88,7 @@ Therefore, I've decided to omit the HTML snippets for now, because I
 | `a-ng-content`       | `<ng-content>` element                              |
 -->
 
-## Installation
+## Local Installation
 
 1. Launch Zed
 2. Go to the "extensions" panel `Ctrl + Shift + X` (Windows/Linux) or `Cmd + Shift + X` (Mac)
