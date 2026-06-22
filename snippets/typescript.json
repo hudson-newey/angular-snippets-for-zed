@@ -202,22 +202,22 @@
   },
   "Signal": {
     "prefix": "a-signal",
-    "body": ["public readonly ${1:signalName} = signal();"],
+    "body": ["protected readonly ${1:signalName} = signal();"],
     "description": "Angular signal"
   },
   "Computed Signal": {
     "prefix": "a-computed",
-    "body": ["public readonly ${1:signalName} = computed(() => ${2:expression});"],
+    "body": ["protected readonly ${1:signalName} = computed(() => ${2:expression});"],
     "description": "Angular computed signal"
   },
   "Linked Signal": {
     "prefix": "a-linked-signal",
-    "body": ["public readonly ${1:signalName} = linkedSignal();"],
+    "body": ["protected readonly ${1:signalName} = linkedSignal();"],
     "description": "Angular linked signal"
   },
   "Inject Dependency": {
     "prefix": "a-inject",
-    "body": ["public readonly ${1:dependency} = inject(${2:service});"],
+    "body": ["private readonly ${1:dependency} = inject(${2:service});"],
     "description": "Angular inject() function"
   },
   "Subscribe": {
