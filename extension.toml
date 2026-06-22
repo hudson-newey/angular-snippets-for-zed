@@ -1,6 +1,6 @@
 id = "angular-snippets"
 name = "Angular TypeScript Snippets"
-version = "21.0.0"
+version = "21.1.0"
 schema_version = 1
 authors = ["hudson-newey", "johnpapa"]
 description = "(Unofficial) Angular 21 TypeScript snippets"
